@@ -18,5 +18,9 @@ def greeting(name):
 @app.route('/history')
 def get_global_history():
     return jsonify(global_history)
+@app.route('/square/<number>')
+def square_(number):
+    number=int(number)
+    return str(number*number)
 
 app.run(debug=True, host="0.0.0.0")
