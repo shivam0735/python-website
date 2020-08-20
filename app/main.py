@@ -34,6 +34,8 @@ youtube_songs = {
 @app.route('/song_search')
 def search_song():
     input_string = request.args.get('input_string')
+    if input_string is None:
+        return "NA"
     input_string = input_string.lower()
     if input_string in youtube_songs:
         return youtube_songs[input_string]
