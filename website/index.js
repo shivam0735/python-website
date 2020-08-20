@@ -16,32 +16,26 @@ function change_content(data) {
     $.get("http://" + server_url + ":5000/history", update_global_history)
 }
 
-function update_local_history() {
+function update_history(history_list, list_id) {
     // <ul>
     // <li>..</li>
     // <li>..</li>
     // <li>..</li>
     // </ul>
-    var my_list = "<ul>";
-    local_history.forEach(function(elem){
-       my_list += "<li>" + elem + "</li>"
+    var my_list = '<ul class="list-group list-group-flush">';
+    history_list.forEach(function(elem){
+       my_list += '<li class="list-group-item">' + elem + "</li>"
     });
     my_list += "</ul>";
-    $("#local-history-box").html(my_list);
+    $("#" + list_id).html(my_list);
+}
+
+function update_local_history() {
+    update_history(local_history, 'local-history-box');
 }
 
 function update_global_history(global_history) {
-    // <ul>
-    // <li>..</li>
-    // <li>..</li>
-    // <li>..</li>
-    // </ul>
-    var my_list = "<ul>";
-    global_history.forEach(function(elem){
-       my_list += "<li>" + elem + "</li>"
-    });
-    my_list += "</ul>";
-    $("#global-history-box").html(my_list);
+    update_history(global_history, 'global-history-box');
 }
 
 function get_content() {
@@ -50,6 +44,7 @@ function get_content() {
         alert("Enter something");
         return;
     }
-    local_history.push(requested_name);
+    if(!local_history.includes(requested_name))
+        local_history.push(requested_name);
     $.get("http://" + server_url + ":5000/greeting/" + requested_name, change_content)
 }

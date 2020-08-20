@@ -12,7 +12,8 @@ def hello():
 
 @app.route('/greeting/<name>')
 def greeting(name):
-    global_history.append(name)
+    if name not in global_history:
+        global_history.append(name)
     return "Hello! " + name
 
 @app.route('/history')
