@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 
 app = Flask(__name__,
         static_url_path="",
@@ -6,6 +6,11 @@ app = Flask(__name__,
 
 
 global_history = []
+@app.route("/")
+def home():
+    url_for_index = url_for('static', filename='index.html')
+    return redirect(url_for_index)
+
 
 @app.route('/backend')
 def hello():
