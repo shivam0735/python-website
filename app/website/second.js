@@ -14,5 +14,5 @@ function calculate_answer() {
         alert("Enter something");
         return;
     }
-    $.get("http://localhost:5000/square/" + input_number, update_answer_paragraph)
+    $.get("/backend/square/" + input_number, update_answer_paragraph)
 }

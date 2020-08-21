@@ -1,11 +1,9 @@
 
 
-var server_url = "localhost"
-
 $(document).ready(function(){
     console.log("Hello World!");
     $("#my-button").click(get_content);
-    $.get("http://" + server_url + ":5000/history", update_global_history)
+    $.get("/backend/history", update_global_history)
 });
 
 var local_history = [];
@@ -13,7 +11,7 @@ var local_history = [];
 function change_content(data) {
     $('#my-content').text(data);
     update_local_history();
-    $.get("http://" + server_url + ":5000/history", update_global_history)
+    $.get("/backend/history", update_global_history)
 }
 
 function update_history(history_list, list_id) {
@@ -46,5 +44,5 @@ function get_content() {
     }
     if(!local_history.includes(requested_name))
         local_history.push(requested_name);
-    $.get("http://" + server_url + ":5000/greeting/" + requested_name, change_content)
+    $.get(" /backend/greeting/" + requested_name, change_content)
 }

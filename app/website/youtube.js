@@ -15,7 +15,7 @@ function update_results(data) {
 
 function query_song() {
     input_string = $("#input_string").val();
-    $.get("http://localhost:5000/song_search", {
+    $.get("/backend/song_search", {
         input_string: input_string
     }, update_results)
 }

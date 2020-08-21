@@ -7,11 +7,6 @@ Prerequisites:
 
 Python libraries:
 - pip install flask
-- pip install flask-cors
-
-Running Frontend:
-- cd website/
-- python -m http.server
 
 Running Backend:
 - cd app/
