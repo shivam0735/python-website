@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, redirect, url_for
+import os
 
 app = Flask(__name__,
         static_url_path="",
@@ -10,6 +11,28 @@ global_history = []
 def home():
     url_for_index = url_for('static', filename='index.html')
     return redirect(url_for_index)
+
+
+@app.route('/mycss/<filename>')
+def mycss(filename):
+    # Resolving file_path using file_name 
+    if '.css' not in filename:
+        # If .css not in file, add .css at the end
+        file_path='website/' + filename + '.css'
+    else:
+        # Otherwise, leave alone
+        file_path='website/'+ filename
+
+    # Check whether file exists
+    if  not os.path.exists(file_path):
+        # File doesn't exist, return 404
+        return "NA", 404
+    
+    opened_file = open(file_path)
+    data = opened_file.read()
+    opened_file.close()
+
+    return data
 
 
 @app.route('/backend')
