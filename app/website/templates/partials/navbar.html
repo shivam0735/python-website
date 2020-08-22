@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">FreshenUp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% for page in pages %}
+          <li class="nav-item">
+            {% if page['function'] == current_page['function'] %}
+              <a class="nav-link disabled" href="{{ url_for(page['function']) }}">{{ page['navbar_label'] }}</a>
+            {% else %}
+              <a class="nav-link" href="{{ url_for(page['function']) }}">{{ page['navbar_label'] }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>

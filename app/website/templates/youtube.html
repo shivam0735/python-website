@@ -1,0 +1,24 @@
+{% set user_stylesheet_path="/static/css/youtube.css" %}
+{% set user_js_path="/static/js/youtube.js" %}
+{% include 'partials/header.html' %}
+{% include 'partials/navbar.html' %}
+<div class='container h-100 d-flex justify-content-center vertical-center'>
+  <div class="row justify-content-center">
+    <h1>Hello</h1>
+    <div class="input-group mb-3">
+      <input id="input_string" type="text" class="form-control" placeholder="Search for a song"
+        aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button id="main-btn" class="btn btn-success" type="button">Go!</button>
+      </div>
+    </div>
+    <div id="results" hidden>
+      <iframe id="results-iframe" src="#" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div id="not-found" class="alert alert-danger" role="alert" hidden>
+      Song not found
+    </div>
+  </div>
+</div>
+{% include 'partials/footer.html' %}

@@ -1,16 +1,51 @@
-from flask import Flask, jsonify, request, redirect, url_for
+from flask import Flask, jsonify, request, redirect, url_for, render_template
 import os
 
 app = Flask(__name__,
-        static_url_path="",
-        static_folder='website')
+        static_url_path="/static",
+        static_folder='website/static',
+        template_folder='website/templates')
 
+PAGE_GREETING = {
+        "page_title": "Greeting",
+        "navbar_label": "Greeting",
+        "template": "greeting.html",
+        "function": "f_greeting"
+    }
+
+PAGE_SQUARE ={
+        "page_title": "Square",
+        "navbar_label": "Square",
+        "template": "square.html",
+        "function": "f_square"
+    }
+
+PAGE_YOUTUBE = {
+        "page_title": "Youtube",
+        "navbar_label": "Youtube",
+        "template": "youtube.html",
+        "function": "f_youtube"
+    }
+
+pages = [PAGE_GREETING, PAGE_SQUARE, PAGE_YOUTUBE]
 
 global_history = []
+
 @app.route("/")
 def home():
-    url_for_index = url_for('static', filename='index.html')
-    return redirect(url_for_index)
+    return redirect(url_for('f_greeting'))
+
+@app.route("/greeting")
+def f_greeting():
+    return render_template('greeting.html', pages=pages, current_page=PAGE_GREETING)
+
+@app.route("/square")
+def f_square():
+    return render_template('square.html', pages=pages, current_page=PAGE_SQUARE)
+
+@app.route("/youtube")
+def f_youtube():
+    return render_template('youtube.html', pages=pages, current_page=PAGE_YOUTUBE)
 
 
 @app.route('/mycss/<filename>')
@@ -34,16 +69,14 @@ def mycss(filename):
 
     return data
 
+@app.route('/render/<path>')
+def render_path(path):
+    return render_template(path)
 
 @app.route('/backend')
 def hello():
-    return "Hello World!"
-
-@app.route('/backend/greeting/<name>')
-def greeting(name):
-    if name not in global_history:
-        global_history.append(name)
-    return "Hello! " + name
+    message = "Hello World!"
+    return render_template('first_template.html', message=message)
 
 @app.route('/backend/history')
 def get_global_history():

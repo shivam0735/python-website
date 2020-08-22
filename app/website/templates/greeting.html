@@ -1,0 +1,51 @@
+{% set user_stylesheet_path="/static/css/index.css" %}
+{% set user_js_path="/static/js/index.js" %}
+{% include 'partials/header.html' %}
+{% include 'partials/navbar.html' %}
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 id="main-heading">Greetings for all</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 equal">
+            <div class="card cards-styles">
+                <div class="card-header">
+                    Input
+                </div>
+                <div class="card-body">
+                    <p class="card-text"></p>
+                    <div class="form-group">
+                        <label for="my-name">Enter Details</label>
+                        <input placeholder="Name" id="my-name" class="form-control" />
+                    </div>
+                    <button id="my-button" class="btn btn-primary">Click me!</button>
+                    <p id="my-content">This is the old content</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 equal">
+            <div class="card cards-styles">
+                <div class="card-header">
+                    People before you!
+                </div>
+                <div class="card-body" id="history-super">
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#local-history-box"
+                        role="button" aria-expanded="false" aria-controls="local-history-box">List of local
+                        users</button>
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#global-history-box"
+                        role="button" aria-expanded="false" aria-controls="global-history-box">List of global
+                        users</button>
+                    <div class="collapse" id="local-history-box" aria-labelledby="local-history-box"
+                        data-parent="#history-super">
+                        Empty List!
+                    </div>
+                    <div class="collapse" id="global-history-box" aria-labelledby="global-history-box"
+                        data-parent="#history-super">
+                        Basic panel example
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'partials/footer.html' %}
