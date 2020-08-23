@@ -26,14 +26,25 @@ PAGE_YOUTUBE = {
         "template": "youtube.html",
         "function": "f_youtube"
     }
+    
+PAGE_HOME = {
+        "page_title": "FreshenUp",
+        "navbar_label": "About",
+        "template": "home.html",
+        "function": "f_home"
+    }
 
-pages = [PAGE_GREETING, PAGE_SQUARE, PAGE_YOUTUBE]
+pages = [PAGE_HOME, PAGE_GREETING, PAGE_SQUARE, PAGE_YOUTUBE]
 
 global_history = []
 
 @app.route("/")
 def home():
-    return redirect(url_for('f_greeting'))
+    return redirect(url_for('f_home'))
+
+@app.route("/home")
+def f_home():
+    return render_template('home.html', pages=pages, current_page=PAGE_HOME)
 
 @app.route("/greeting")
 def f_greeting():
